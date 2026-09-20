@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLAR CHARGE - Energía Solar Portátil</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter / Plus Jakarta -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        olive: {
+                            DEFAULT: '#6b824a',
+                            light: '#8ba665',
+                            dark: '#4f6235',
+                            subtle: '#eef2e8',
+                            deep: '#182115'
+                        },
+                        solar: {
+                            yellow: '#f1c40f',
+                            gold: '#f39c12',
+                            glow: '#fde047'
+                        },
+                        sand: '#f8f9f5',
+                        charcoal: '#1e2922'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .section-divider {
+            position: relative;
+        }
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(107, 130, 74, 0.3), transparent);
+        }
+        .glow-effect {
+            box-shadow: 0 0 35px rgba(241, 196, 15, 0.45);
+        }
+        .glow-olive {
+            box-shadow: 0 10px 30px -10px rgba(107, 130, 74, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-sand text-charcoal font-sans antialiased overflow-x-hidden selection:bg-olive selection:text-white">
+
+    <!-- NAVIGATION BAR (STICKY) -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-olive/10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-olive flex items-center justify-center text-solar-yellow font-black text-xl shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-charcoal flex items-center gap-1">
+                            SOLAR<span class="text-olive">CHARGE</span>
+                        </span>
+                        <span class="block text-[10px] tracking-widest text-olive-dark/70 font-bold uppercase">Energía Social Perú</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-bold text-slate-700">
+                    <a href="#hero" class="px-3 py-2 rounded-lg hover:text-olive hover:bg-olive-subtle transition-all">Inicio</a>
+                    <a href="#problem" class="px-3 py-2 rounded-lg hover:text-olive hover:bg-olive-subtle transition-all">Problemática</a>
+                    <a href="#solution" class="px-3 py-2 rounded-lg hover:text-olive hover:bg-olive-subtle transition-all">La Solución</a>
+                    <a href="#how-it-works" class="px-3 py-2 rounded-lg hover:text-olive hover:bg-olive-subtle transition-all">¿Cómo Funciona?</a>
+                    <a href="#features" class="px-3 py-2 rounded-lg hover:text-olive hover:bg-olive-subtle transition-all">Características</a>
+                    <a href="#contact" class="px-3 py-2 rounded-lg hover:text-olive hover:bg-olive-subtle transition-all">Contacto</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="#how-it-works" class="bg-olive hover:bg-olive-dark text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 transform active:scale-95">
+                        <i class="fa-solid fa-bolt text-solar-yellow"></i>
+                         Probar Simulador
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-olive hover:bg-olive-subtle focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-olive/10 px-4 pt-2 pb-6 space-y-3 font-semibold text-sm">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-olive-subtle">Inicio</a>
+            <a href="#problem" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-olive-subtle">Problemática</a>
+            <a href="#solution" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-olive-subtle">La Solución</a>
+            <a href="#how-it-works" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-olive-subtle">¿Cómo Funciona?</a>
+            <a href="#features" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-olive-subtle">Características</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-olive-subtle">Contacto</a>
+            <a href="#how-it-works" onclick="toggleMobileMenu()" class="block text-center bg-olive text-white py-2.5 rounded-xl font-bold">Probar Simulador</a>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO / INICIO -->
+    <section id="hero" class="relative pt-12 pb-24 lg:pt-20 lg:pb-32 bg-gradient-to-b from-olive-subtle via-white to-sand overflow-hidden border-b border-olive/10">
+        <!-- Sun decoration -->
+        <div class="absolute top-10 right-10 w-96 h-96 bg-solar-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 -left-10 w-80 h-80 bg-olive/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-olive/10 border border-olive/20 text-olive-dark font-extrabold text-xs uppercase tracking-wider">
+                        <i class="fa-solid fa-leaf text-olive"></i> Innovación Ecológica e Impacto Social
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-charcoal tracking-tight leading-none">
+                        SOLAR <span class="text-olive">CHARGE</span>
+                    </h1>
+
+                    <p class="text-2xl sm:text-3xl font-extrabold text-solar-gold tracking-tight">
+                        Energía Solar Portátil
+                    </p>
+
+                    <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                        <span class="text-charcoal font-bold underline decoration-solar-gold decoration-2">Para iluminar donde más se necesita.</span> Transformamos la luz del sol en electricidad limpia para comunidades rurales sin acceso a la red eléctrica.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#how-it-works" class="bg-solar-gold hover:bg-amber-600 text-white font-extrabold px-8 py-4 rounded-2xl shadow-lg shadow-solar-gold/30 hover:shadow-xl transition-all text-center flex items-center justify-center gap-3 transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-solar-panel"></i> Explorar la Solución
+                        </a>
+                        <a href="#problem" class="bg-white border-2 border-olive/30 hover:border-olive text-olive-dark font-extrabold px-8 py-4 rounded-2xl hover:bg-olive-subtle transition-all text-center">
+                            Ver Problemática
+                        </a>
+                    </div>
+
+                    <!-- Quick Metrics -->
+                    <div class="pt-8 border-t border-olive/10 grid grid-cols-3 gap-4">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-olive">100%</span>
+                            <span class="text-xs text-slate-500 font-semibold uppercase">Limpia y Renovable</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-olive">0 S/</span>
+                            <span class="text-xs text-slate-500 font-semibold uppercase">Costo Eléctrico</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-olive">Portátil</span>
+                            <span class="text-xs text-slate-500 font-semibold uppercase">Diseño Ligero</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Visual Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative max-w-md mx-auto">
+                        <div class="bg-charcoal text-white rounded-3xl p-8 shadow-2xl border-4 border-olive relative overflow-hidden">
+                            <!-- Background glow -->
+                            <div class="absolute -right-10 -top-10 w-40 h-40 bg-solar-yellow/20 rounded-full blur-2xl"></div>
+
+                            <div class="flex justify-between items-center text-xs font-mono text-emerald-400 mb-6">
+                                <span><i class="fa-solid fa-circle text-[8px] animate-pulse"></i> ESTACIÓN AUTÓNOMA</span>
+                                <span>SOLAR CHARGE v1</span>
+                            </div>
+
+                            <!-- Central Bulb Illustration -->
+                            <div class="my-10 text-center">
+                                <div class="w-32 h-32 mx-auto rounded-full bg-olive-deep flex items-center justify-center border-2 border-olive/40 relative">
+                                    <i class="fa-solid fa-lightbulb text-7xl text-solar-yellow drop-shadow-[0_0_20px_rgba(241,196,15,0.8)]"></i>
+                                    <div class="absolute -top-2 -right-2 bg-solar-gold text-charcoal font-black w-10 h-10 rounded-full flex items-center justify-center shadow-md">
+                                        <i class="fa-solid fa-sun animate-spin" style="animation-duration: 12s;"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3 bg-white/5 p-4 rounded-2xl border border-white/10 text-xs font-semibold">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Eficiencia Fotovoltaica</span>
+                                    <span class="text-solar-yellow font-bold">Máxima</span>
+                                </div>
+                                <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-olive to-solar-yellow h-full w-full"></div>
+                                </div>
+                                <p class="text-[11px] text-slate-400 text-center pt-1">
+                                    Iluminación sostenible para el desarrollo rural
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: LA PROBLEMÁTICA -->
+    <section id="problem" class="py-24 bg-olive-deep text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="px-3 py-1 rounded-full bg-red-500/20 text-red-400 font-extrabold text-xs uppercase tracking-widest border border-red-500/30">
+                    Realidad Social
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Respuesta a una Problemática Crucial</h2>
+                <div class="w-20 h-1 bg-olive mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+                
+                <!-- Main Warning Card -->
+                <div class="lg:col-span-7 bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-10 flex flex-col justify-between space-y-6 backdrop-blur-sm">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center text-2xl font-bold border border-red-500/30">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black leading-snug">
+                            Comunidades rurales y alejadas del Perú todavía tienen dificultades para acceder a electricidad.
+                        </h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            La falta de energía limita las horas de estudio para niños, restringe las actividades productivas de las familias y genera dependencia de fuentes peligrosas y contaminantes como velas o mecheros de kerosén.
+                        </p>
+                    </div>
+
+                    <!-- Highlighted Regions Cards -->
+                    <div class="pt-6 border-t border-white/10">
+                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Zonas fuertemente afectadas:</p>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="bg-white/10 border border-white/10 p-4 rounded-2xl flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-olive flex items-center justify-center text-solar-yellow text-lg font-bold">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">LORETO</h4>
+                                    <p class="text-xs text-slate-300">Comunidades Amazónicas</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/10 border border-white/10 p-4 rounded-2xl flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-olive flex items-center justify-center text-solar-yellow text-lg font-bold">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">CAJAMARCA</h4>
+                                    <p class="text-xs text-slate-300">Zonas Andinas Alejalas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics & Impact Callout Card -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-olive to-olive-dark rounded-3xl p-8 sm:p-10 flex flex-col justify-between text-white shadow-xl relative overflow-hidden border border-olive-light/30">
+                    <div class="space-y-6">
+                        <span class="inline-block px-3 py-1 rounded-full bg-solar-yellow text-charcoal font-black text-xs uppercase">
+                            Impacto Directo
+                        </span>
+                        
+                        <h3 class="text-3xl font-extrabold leading-tight">
+                            Desconectados de la red eléctrica convencional
+                        </h3>
+
+                        <p class="text-slate-100 text-sm leading-relaxed">
+                            A pesar del avance tecnológico, la geografía diversa del Perú dificulta la extensión del cableado tradicional a zonas dispersas.
+                        </p>
+                    </div>
+
+                    <div class="pt-8 space-y-4">
+                        <div class="bg-black/20 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
+                            <span class="text-xs font-bold">Costo social de no tener luz</span>
+                            <span class="text-solar-yellow font-extrabold text-sm">Muy Alto</span>
+                        </div>
+                        <div class="bg-black/20 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
+                            <span class="text-xs font-bold">Riesgo por uso de mecheros</span>
+                            <span class="text-red-300 font-extrabold text-sm">Elevado</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: ¿POR QUÉ NO APROVECHAR EL SOL? (LA SOLUCIÓN) -->
+    <section id="solution" class="py-24 bg-sand border-b border-olive/10 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Solution Card -->
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="bg-white p-8 sm:p-10 rounded-3xl border-2 border-olive/20 shadow-xl space-y-6 relative">
+                        <div class="w-16 h-16 rounded-2xl bg-solar-yellow/20 text-solar-gold flex items-center justify-center text-3xl font-bold">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-charcoal">
+                            Una estación portátil que convierte la luz del sol en electricidad.
+                        </h3>
+
+                        <p class="text-slate-600 leading-relaxed font-medium">
+                            Nuestra propuesta es simple pero revolucionaria: capturar la abundante radiación solar presente en el territorio peruano, guardarla de forma segura y disponibilizarla para iluminación LED de alta potencia.
+                        </p>
+
+                        <div class="space-y-3 pt-2">
+                            <div class="flex items-center gap-3 text-sm font-bold text-olive-dark">
+                                <i class="fa-solid fa-circle-check text-solar-gold"></i>
+                                <span>Energía 100% gratuita tras la adquisición</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm font-bold text-olive-dark">
+                                <i class="fa-solid fa-circle-check text-solar-gold"></i>
+                                <span>Sin emisiones ni riesgo de incendios</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm font-bold text-olive-dark">
+                                <i class="fa-solid fa-circle-check text-solar-gold"></i>
+                                <span>Diseñado para condiciones rurales exigentes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Question & Concept -->
+                <div class="lg:col-span-6 space-y-6 order-1 lg:order-2">
+                    <span class="px-4 py-1.5 rounded-full bg-solar-gold/15 text-solar-gold font-extrabold text-xs uppercase tracking-wider">
+                        La Solución Inteligente
+                    </span>
+
+                    <h2 class="text-4xl sm:text-5xl font-black text-charcoal leading-tight">
+                        ¿Por qué no aprovechar el Sol?
+                    </h2>
+
+                    <p class="text-lg text-slate-600 font-medium leading-relaxed">
+                        El sol brilla todos los días sobre nuestro país. SOLAR CHARGE convierte esta fuente inagotable en una oportunidad directa de desarrollo para miles de peruanos.
+                    </p>
+
+                    <div class="p-6 rounded-2xl bg-olive text-white shadow-lg space-y-2">
+                        <h4 class="font-extrabold text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-solar-yellow"></i> Concepto Clave
+                        </h4>
+                        <p class="text-sm opacity-90">
+                            "Autonomía energética sencilla, limpia e ininterrumpida para cada hogar rural."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: CÓMO FUNCIONA (PASO A PASO EN 3 ETAPAS) -->
+    <section id="how-it-works" class="py-24 bg-white border-b border-olive/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="px-4 py-1.5 rounded-full bg-olive/10 text-olive-dark font-extrabold text-xs uppercase tracking-widest">
+                    Proceso de 3 Etapas
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-charcoal">¿Cómo Funciona?</h2>
+                <p class="text-slate-600 text-base font-medium">Un circuito eficiente y automatizado diseñado para durar.</p>
+            </div>
+
+            <!-- Step Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                
+                <!-- Step 1 -->
+                <div class="bg-sand p-8 rounded-3xl border-2 border-olive/15 hover:border-olive transition-all group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="w-12 h-12 rounded-2xl bg-solar-gold text-white font-black text-xl flex items-center justify-center shadow-md">
+                                1
+                            </span>
+                            <i class="fa-solid fa-solar-panel text-4xl text-solar-gold group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-charcoal">1. CAPTURAR</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            El <strong>Panel Solar</strong> convierte la luz del sol en energía eléctrica directamente durante las horas del día.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200 text-xs font-bold text-olive flex items-center gap-2">
+                        <i class="fa-solid fa-sun"></i> Transformación limpia
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-sand p-8 rounded-3xl border-2 border-olive/15 hover:border-olive transition-all group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="w-12 h-12 rounded-2xl bg-olive text-white font-black text-xl flex items-center justify-center shadow-md">
+                                2
+                            </span>
+                            <i class="fa-solid fa-battery-charging text-4xl text-olive group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-charcoal">2. ALMACENAR</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            La <strong>Batería</strong> guarda la electricidad de forma segura para utilizarla después cuando sea necesario.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200 text-xs font-bold text-olive flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved"></i> Reserva garantizada
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-sand p-8 rounded-3xl border-2 border-olive/15 hover:border-olive transition-all group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="w-12 h-12 rounded-2xl bg-solar-yellow text-charcoal font-black text-xl flex items-center justify-center shadow-md">
+                                3
+                            </span>
+                            <i class="fa-solid fa-lightbulb text-4xl text-solar-yellow group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-charcoal">3. UTILIZAR</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            La <strong>Luz LED</strong> utiliza la energía almacenada para proporcionar iluminación clara y potente durante toda la noche.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200 text-xs font-bold text-olive flex items-center gap-2">
+                        <i class="fa-solid fa-bolt"></i> Iluminación eficiente
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Interactive Simulator Component -->
+            <div class="bg-charcoal text-white rounded-3xl p-6 sm:p-10 shadow-2xl border-4 border-olive max-w-4xl mx-auto">
+                <div class="text-center space-y-2 mb-8">
+                    <span class="text-solar-yellow font-extrabold text-xs uppercase tracking-widest"><i class="fa-solid fa-sliders"></i> Proceso Interactivo</span>
+                    <h3 class="text-2xl sm:text-3xl font-black">Simulador en Vivo de SOLAR CHARGE</h3>
+                    <p class="text-xs sm:text-sm text-slate-300">Haz clic en los botones para interactuar con las etapas de carga e iluminación.</p>
+                </div>
+
+                <!-- Control Tabs -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <button onclick="setStage(1)" id="stage-btn-1" class="px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-solar-gold text-white shadow-lg">
+                        <i class="fa-solid fa-sun"></i> 1. Capturar Sol
+                    </button>
+                    <button onclick="setStage(2)" id="stage-btn-2" class="px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-white/10 text-slate-300 hover:bg-white/20">
+                        <i class="fa-solid fa-battery-three-quarters"></i> 2. Almacenar Energía
+                    </button>
+                    <button onclick="setStage(3)" id="stage-btn-3" class="px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-white/10 text-slate-300 hover:bg-white/20">
+                        <i class="fa-solid fa-lightbulb"></i> 3. Encender Luz LED
+                    </button>
+                </div>
+
+                <!-- Simulation Visual Canvas Display -->
+                <div class="bg-black/40 rounded-2xl p-6 border border-white/10 grid sm:grid-cols-3 gap-6 items-center text-center">
+                    
+                    <!-- Panel status -->
+                    <div id="sim-panel-box" class="p-4 rounded-xl bg-white/5 border border-white/10 transition-all">
+                        <i class="fa-solid fa-solar-panel text-3xl text-solar-yellow mb-2"></i>
+                        <h4 class="font-bold text-sm">Panel Fotovoltaico</h4>
+                        <p id="sim-panel-desc" class="text-xs text-emerald-400 mt-1 font-mono">Generando 12V</p>
+                    </div>
+
+                    <!-- Battery Status -->
+                    <div id="sim-battery-box" class="p-4 rounded-xl bg-white/5 border border-white/10 transition-all">
+                        <i class="fa-solid fa-battery-full text-3xl text-olive-light mb-2"></i>
+                        <h4 class="font-bold text-sm">Batería Interna</h4>
+                        <p id="sim-battery-desc" class="text-xs text-slate-300 mt-1 font-mono">Carga: 85%</p>
+                    </div>
+
+                    <!-- LED Status -->
+                    <div id="sim-led-box" class="p-4 rounded-xl bg-white/5 border border-white/10 transition-all">
+                        <i id="sim-led-icon" class="fa-solid fa-lightbulb text-3xl text-slate-600 mb-2"></i>
+                        <h4 class="font-bold text-sm">Foco LED</h4>
+                        <p id="sim-led-desc" class="text-xs text-slate-400 mt-1 font-mono">Modo Espera</p>
+                    </div>
+
+                </div>
+
+                <!-- Explanatory Banner below simulator -->
+                <div class="mt-6 bg-olive/30 p-4 rounded-xl border border-olive/40 text-center">
+                    <p id="sim-info-text" class="text-xs sm:text-sm text-slate-200 font-medium">
+                        <strong>Etapa 1:</strong> La radiación solar impacta sobre el panel de silicona monocristalina generando corriente continua.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: CARACTERÍSTICAS DESTACADAS / POR QUÉ ES IMPORTANTE -->
+    <section id="features" class="py-24 bg-olive text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="px-4 py-1.5 rounded-full bg-white/10 text-solar-yellow font-extrabold text-xs uppercase tracking-widest border border-white/20">
+                    Propuesta Diferenciadora
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black">¿Por qué es Importante?</h2>
+                <div class="w-20 h-1 bg-solar-yellow mx-auto rounded-full"></div>
+            </div>
+
+            <!-- HUGE PORTABLE HIGHLIGHT BANNER -->
+            <div class="bg-gradient-to-r from-solar-gold to-solar-yellow text-charcoal rounded-3xl p-8 sm:p-12 shadow-2xl mb-16 border-4 border-white/20 transform hover:scale-[1.01] transition-transform">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+                    <div class="space-y-2">
+                        <span class="bg-charcoal text-solar-yellow text-xs font-black px-3 py-1 rounded-full uppercase tracking-widest">Ventaja Clave</span>
+                        <h3 class="text-3xl sm:text-5xl font-black tracking-tight">¡ES TOTALMENTE PORTÁTIL!</h3>
+                        <p class="font-bold text-charcoal/80 max-w-xl">
+                            Diseñado con un peso ligero y asas ergonómicas para ser trasladado fácilmente entre el campo, la escuela o la vivienda.
+                        </p>
+                    </div>
+                    <div class="w-24 h-24 rounded-full bg-charcoal text-solar-yellow flex items-center justify-center text-5xl shrink-0 shadow-2xl">
+                        <i class="fa-solid fa-person-walking-luggage"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Cards Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white/10 border border-white/15 p-6 rounded-2xl backdrop-blur-sm space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-solar-yellow text-charcoal flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h4 class="text-xl font-bold">Ecológico y Sostenible</h4>
+                    <p class="text-slate-200 text-sm">
+                        Reduce drásticamente la huella de carbono y elimina la quema de combustibles fósiles en el hogar.
+                    </p>
+                </div>
+
+                <div class="bg-white/10 border border-white/15 p-6 rounded-2xl backdrop-blur-sm space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-solar-yellow text-charcoal flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                    </div>
+                    <h4 class="text-xl font-bold">Cero Gastos Recurrentes</h4>
+                    <p class="text-slate-200 text-sm">
+                        No requiere comprar pilas, combustible ni pagar facturas mensuales de servicio eléctrico.
+                    </p>
+                </div>
+
+                <div class="bg-white/10 border border-white/15 p-6 rounded-2xl backdrop-blur-sm space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-solar-yellow text-charcoal flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <h4 class="text-xl font-bold">Impacto en la Educación</h4>
+                    <p class="text-slate-200 text-sm">
+                        Permite a niños y jóvenes estudiar por las noches con luz clara que protege su visión.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 6: PIE DE PÁGINA -->
+    <footer id="contact" class="py-12 bg-sand relative">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <!-- Footer Bottom Note -->
+            <div class="text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p>© 2026 SOLAR CHARGE - Proyecto de Energía Solar Portátil Perú.</p>
+                <div class="flex gap-4 text-slate-600 font-semibold">
+                    <span>Loreto</span> • <span>Cajamarca</span> • <span>Perú Rural</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Simulator Logic
+        function setStage(stage) {
+            const btn1 = document.getElementById('stage-btn-1');
+            const btn2 = document.getElementById('stage-btn-2');
+            const btn3 = document.getElementById('stage-btn-3');
+
+            const panelBox = document.getElementById('sim-panel-box');
+            const batteryBox = document.getElementById('sim-battery-box');
+            const ledBox = document.getElementById('sim-led-box');
+
+            const panelDesc = document.getElementById('sim-panel-desc');
+            const batteryDesc = document.getElementById('sim-battery-desc');
+            const ledDesc = document.getElementById('sim-led-desc');
+            const ledIcon = document.getElementById('sim-led-icon');
+            const infoText = document.getElementById('sim-info-text');
+
+            // Reset classes
+            [btn1, btn2, btn3].forEach(btn => {
+                btn.className = "px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-white/10 text-slate-300 hover:bg-white/20";
+            });
+
+            if (stage === 1) {
+                btn1.className = "px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-solar-gold text-white shadow-lg";
+                
+                panelBox.className = "p-4 rounded-xl bg-solar-gold/20 border-2 border-solar-gold transition-all scale-105";
+                batteryBox.className = "p-4 rounded-xl bg-white/5 border border-white/10 transition-all opacity-60";
+                ledBox.className = "p-4 rounded-xl bg-white/5 border border-white/10 transition-all opacity-60";
+
+                panelDesc.innerText = "Capturando Fotones (Activo)";
+                batteryDesc.innerText = "Recibiendo Carga";
+                ledDesc.innerText = "Apagado";
+                ledIcon.className = "fa-solid fa-lightbulb text-3xl text-slate-600 mb-2";
+
+                infoText.innerHTML = "<strong>Etapa 1 (CAPTURAR):</strong> El panel fotovoltaico absorbe los rayos del sol y los convierte en energía eléctrica limpia.";
+            } 
+            else if (stage === 2) {
+                btn2.className = "px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-olive text-white shadow-lg";
+
+                panelBox.className = "p-4 rounded-xl bg-white/5 border border-white/10 transition-all opacity-60";
+                batteryBox.className = "p-4 rounded-xl bg-olive/30 border-2 border-olive-light transition-all scale-105";
+                ledBox.className = "p-4 rounded-xl bg-white/5 border border-white/10 transition-all opacity-60";
+
+                panelDesc.innerText = "En Espera";
+                batteryDesc.innerText = "100% Batería Almacenada";
+                ledDesc.innerText = "Listo para usar";
+                ledIcon.className = "fa-solid fa-lightbulb text-3xl text-slate-600 mb-2";
+
+                infoText.innerHTML = "<strong>Etapa 2 (ALMACENAR):</strong> La batería integrada conserva de forma segura la energía eléctrica acumulada para la noche.";
+            } 
+            else if (stage === 3) {
+                btn3.className = "px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-solar-yellow text-charcoal shadow-lg font-black";
+
+                panelBox.className = "p-4 rounded-xl bg-white/5 border border-white/10 transition-all opacity-60";
+                batteryBox.className = "p-4 rounded-xl bg-white/5 border border-white/10 transition-all opacity-60";
+                ledBox.className = "p-4 rounded-xl bg-solar-yellow/20 border-2 border-solar-yellow transition-all scale-105";
+
+                panelDesc.innerText = "Noche (Sin Sol)";
+                batteryDesc.innerText = "Suministrando Energía";
+                ledDesc.innerText = "¡ILUMINANDO (Luz LED)!";
+                ledIcon.className = "fa-solid fa-lightbulb text-4xl text-solar-yellow mb-2 drop-shadow-[0_0_15px_rgba(241,196,15,1)] animate-pulse";
+
+                infoText.innerHTML = "<strong>Etapa 3 (UTILIZAR):</strong> El foco LED de alta potencia consume la energía guardada para dar luz eficiente a la comunidad.";
+            }
+        }
+    </script>
+</body>
+</html>
